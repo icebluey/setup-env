@@ -82,7 +82,7 @@ yum upgrade -y epel-release ; yum makecache
 yum install -y wget ca-certificates git
 yum install -y tar xz gzip bzip2 zip unzip cpio
 yum install -y binutils util-linux findutils diffutils shadow-utils
-yum install -y lsof file sed gawk grep patch passwd groff-base pkgconfig which crontabs cronie info
+yum install -y lsof file sed gawk grep less patch passwd groff-base pkgconfig which crontabs cronie info
 yum install -y perl perl-devel perl-libs perl-Env perl-ExtUtils-Embed \
   perl-ExtUtils-Install perl-ExtUtils-MakeMaker perl-ExtUtils-Manifest \
   perl-ExtUtils-ParseXS perl-Git perl-JSON perl-SGMLSpm perl-libwww-perl perl-podlators
