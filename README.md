@@ -1,9 +1,10 @@
 ```
 
 _setup_env() {
+    set -e
     _tmp_dir="$(mktemp -d)"
     cd "${_tmp_dir}"
-    wget -c -t 0 -T 9 "https://raw.githubusercontent.com/icebluey/setup-env/master/setup-env.sh"
+    wget -c -t 9 -T 9 "https://raw.githubusercontent.com/icebluey/setup-env/master/setup-env.sh"
     bash setup-env.sh
     cd /tmp
     rm -fr "${_tmp_dir}"
