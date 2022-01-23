@@ -49,6 +49,9 @@ _install_gcc() {
     if ! grep -q -i '^exclude.*gmp' /etc/yum.conf 2>/dev/null; then
         echo 'exclude=gmp.* gmp-* mpfr.* mpfr-* libmpc.* libmpc-*' >> /etc/yum.conf
     fi
+    if ! grep -q -i '^exclude.*gcc' /etc/yum.conf 2>/dev/null; then
+        echo 'exclude=gcc.* cpp.* gcc-c++.*' >> /etc/yum.conf
+    fi
     cd .pre-install
     sha256sum -c sha256sums.txt
     ls -1 *.tar.xz | xargs --no-run-if-empty -I '{}' tar -xf '{}' -C /
@@ -61,7 +64,16 @@ _install_gcc() {
     /sbin/ldconfig
 }
 
+_patch_dracut() {
+    yum install -y patch dracut
+    cd /usr/lib/dracut
+    wget -c -t 9 -T 9 "https://raw.githubusercontent.com/icebluey/kprerequisite/master/patches/01-dracut-98systemd-module-setup.patch"
+    patch --verbose -N -p1 -i 01-dracut-98systemd-module-setup.patch
+}
+
 yum makecache
+_patch_dracut
+
 yum install -y deltarpm bash
 yum install -y bash && ln -svf bash /bin/sh
 yum install -y epel-release ; yum makecache
