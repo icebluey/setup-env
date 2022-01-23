@@ -65,6 +65,7 @@ _install_gcc() {
 }
 
 _patch_dracut() {
+    set -e
     yum install -y patch dracut
     cd /usr/lib/dracut
     wget -c -t 9 -T 9 "https://raw.githubusercontent.com/icebluey/kprerequisite/master/patches/01-dracut-98systemd-module-setup.patch"
