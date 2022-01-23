@@ -40,8 +40,8 @@ _install_gcc() {
     yum install -y libzstd zstd make pkgconfig groff-base
     yum install -y gcc cpp
     yum install -y gcc-c++ libstdc++-devel
-    yum install -y glibc-devel glib2-devel
     yum install -y redhat-rpm-config
+    yum install -y glibc-devel glib2-devel libuuid-devel
     yum install -y elfutils-libelf-devel elfutils-libelf
     yum install -y gmp mpfr libmpc
     yum install -y gmp-devel mpfr-devel libmpc-devel
@@ -80,6 +80,7 @@ yum update -y
 _install_openssl111
 _install_gcc
 
+yum erase -y uuid-devel
 yum clean all >/dev/null 2>&1 || : 
 rm -fr /var/cache/yum
 rm -fr /var/cache/dnf
