@@ -73,8 +73,6 @@ _patch_dracut() {
 }
 
 yum makecache
-_patch_dracut
-
 yum install -y deltarpm bash
 yum install -y bash && ln -svf bash /bin/sh
 yum install -y epel-release ; yum makecache
@@ -82,6 +80,9 @@ yum upgrade -y epel-release ; yum makecache
 yum install -y wget ca-certificates git
 yum install -y tar xz gzip bzip2 zip unzip cpio
 yum install -y binutils util-linux findutils diffutils shadow-utils
+
+_patch_dracut
+
 yum install -y lsof file sed gawk grep less patch passwd groff-base pkgconfig which crontabs cronie info
 yum install -y perl perl-devel perl-libs perl-Env perl-ExtUtils-Embed \
   perl-ExtUtils-Install perl-ExtUtils-MakeMaker perl-ExtUtils-Manifest \
