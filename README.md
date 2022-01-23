@@ -13,6 +13,7 @@ _setup_env() {
 
 yum makecache
 yum install -y deltarpm bash
+yum install -y yum-utils
 yum install -y bash && ln -svf bash /bin/sh
 yum install -y epel-release ; yum makecache
 yum upgrade -y epel-release ; yum makecache
