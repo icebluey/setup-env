@@ -56,6 +56,7 @@ _install_gcc() {
     sha256sum -c sha256sums.txt
     ls -1 *.tar.xz | xargs --no-run-if-empty -I '{}' tar -xf '{}' -C /
     yum install -y binutils/binutils-[0-9]*.el7.x86_64.rpm
+    yum install -y binutils/binutils-devel-[0-9]*.el7.x86_64.rpm
     cd ..
     sha256sum -c gcc-10*el7.x86_64.tar.xz.sha256
     tar -xf gcc-10*.el7.x86_64.tar.xz -C /opt/
