@@ -41,7 +41,7 @@ _install_gcc() {
     yum install -y gcc cpp
     yum install -y gcc-c++ libstdc++-devel
     yum install -y redhat-rpm-config
-    yum install -y m4 glibc-devel glib2-devel libuuid-devel lksctp-tools-devel
+    yum install -y m4 glibc-devel glib2-devel libuuid-devel lksctp-tools-devel pam-devel
     yum install -y elfutils-libelf-devel elfutils-libelf
     yum install -y gmp mpfr libmpc
     yum install -y gmp-devel mpfr-devel libmpc-devel
@@ -79,13 +79,13 @@ yum install -y bash && ln -svf bash /bin/sh
 yum install -y epel-release ; yum makecache
 yum upgrade -y epel-release ; yum makecache
 yum install -y wget ca-certificates git
-yum install -y tar xz gzip bzip2 zip unzip cpio
+yum install -y tar xz gzip bzip2 lz4 zip unzip cpio
 yum install -y binutils util-linux findutils diffutils shadow-utils
 [[ -f /usr/share/zoneinfo/UTC ]] && (rm -f /etc/localtime ; ln -svf ../usr/share/zoneinfo/UTC /etc/localtime)
 
 _patch_dracut
 
-yum install -y lsof file sed gawk grep less patch passwd groff-base pkgconfig which crontabs cronie info
+yum install -y lsof file sed gawk grep less patch passwd groff-base pkgconfig which crontabs cronie info pam
 yum install -y "https://raw.githubusercontent.com/icebluey/kernel-ml/master/kernel-headers.el7.x86_64.rpm"
 yum install -y perl perl-devel perl-libs perl-Env perl-ExtUtils-Embed \
   perl-ExtUtils-Install perl-ExtUtils-MakeMaker perl-ExtUtils-Manifest \
