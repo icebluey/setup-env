@@ -74,13 +74,14 @@ _patch_dracut() {
 
 yum makecache
 yum install -y deltarpm
-yum install -y bash tzdata yum-utils
+yum install -y tzdata yum-utils
 yum install -y bash && ln -svf bash /bin/sh
 yum install -y epel-release ; yum makecache
 yum upgrade -y epel-release ; yum makecache
 yum install -y wget ca-certificates git
 yum install -y tar xz gzip bzip2 zip unzip cpio
 yum install -y binutils util-linux findutils diffutils shadow-utils
+[[ -f /usr/share/zoneinfo/UTC ]] && (rm -f /etc/localtime ; ln -svf ../usr/share/zoneinfo/UTC /etc/localtime)
 
 _patch_dracut
 
