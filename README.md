@@ -11,7 +11,6 @@ _setup_env() {
     /sbin/ldconfig
 }
 
-yum makecache
 yum install -y bash wget ca-certificates
 ln -svf bash /bin/sh
 
