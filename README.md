@@ -11,6 +11,7 @@ _setup_env() {
     /sbin/ldconfig
 }
 
+yum install -y deltarpm
 yum install -y bash wget ca-certificates
 ln -svf bash /bin/sh
 
