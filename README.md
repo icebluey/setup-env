@@ -12,11 +12,8 @@ _setup_env() {
 }
 
 yum makecache
-yum install -y deltarpm
-yum install -y bash && ln -svf bash /bin/sh
-yum install -y epel-release ; yum makecache
-yum upgrade -y epel-release ; yum makecache
-yum install -y wget ca-certificates
+yum install -y bash wget ca-certificates
+ln -svf bash /bin/sh
 
 _setup_env
 
