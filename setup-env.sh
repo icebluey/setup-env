@@ -37,7 +37,7 @@ _install_gcc() {
     cd "${_tmp_dir}"
     git clone https://github.com/icebluey/gcc.git
     cd gcc
-    yum install -y libzstd zstd make pkgconfig groff-base
+    yum install -y libzstd zstd make pkgconfig groff-base bc ctags
     yum install -y gcc cpp
     yum install -y gcc-c++ libstdc++-devel
     yum install -y redhat-rpm-config
