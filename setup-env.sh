@@ -82,7 +82,7 @@ yum upgrade -y epel-release ; yum makecache
 yum install -y wget ca-certificates git
 yum install -y tar xz gzip bzip2 lz4 zip unzip cpio
 yum install -y coreutils binutils util-linux findutils diffutils
-yum install -y passwd shadow-utils authconfig libpwquality pam pam-devel
+yum install -y passwd shadow-utils authconfig libpwquality pam pam-devel audit
 [[ -f /usr/share/zoneinfo/UTC ]] && (rm -f /etc/localtime ; ln -svf ../usr/share/zoneinfo/UTC /etc/localtime)
 
 _patch_dracut
