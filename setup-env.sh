@@ -102,6 +102,7 @@ yum install -y "https://github.com/icebluey/kernel/releases/download/v$(echo ${_
                "https://github.com/icebluey/kernel/releases/download/v$(echo ${_kernel_ver} | cut -d- -f1)/kernel-tools-libs-devel-${_kernel_ver}.el7.x86_64.rpm"
 yum install -y "https://github.com/icebluey/kernel/releases/download/v$(echo ${_kernel_ver} | cut -d- -f1)/perf-${_kernel_ver}.el7.x86_64.rpm"
 if rpm -qa 2>/dev/null | grep -q -i '^kernel-[1-9]'; then
+    yum install -y linux-firmware
     yum install -y "https://github.com/icebluey/kernel/releases/download/v$(echo ${_kernel_ver} | cut -d- -f1)/kernel-${_kernel_ver}.el7.x86_64.rpm"
 fi
 
