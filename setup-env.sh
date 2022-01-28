@@ -82,11 +82,11 @@ yum upgrade -y epel-release ; yum makecache
 yum install -y wget ca-certificates git
 yum install -y tar xz gzip bzip2 lz4 zip unzip cpio
 yum install -y coreutils binutils util-linux findutils diffutils
-yum install -y passwd shadow-utils authconfig libpwquality pam pam-devel audit
 [[ -f /usr/share/zoneinfo/UTC ]] && (rm -f /etc/localtime ; ln -svf ../usr/share/zoneinfo/UTC /etc/localtime)
 
 _patch_dracut
 
+yum install -y passwd shadow-utils authconfig libpwquality pam pam-devel audit
 yum install -y lsof file sed gawk grep less patch passwd groff-base pkgconfig which crontabs cronie info pam
 
 yum install -y perl perl-devel perl-libs perl-Env perl-ExtUtils-Embed \
@@ -101,6 +101,9 @@ yum install -y "https://github.com/icebluey/kernel/releases/download/v$(echo ${_
 yum install -y "https://github.com/icebluey/kernel/releases/download/v$(echo ${_kernel_ver} | cut -d- -f1)/kernel-tools-${_kernel_ver}.el7.x86_64.rpm"
 yum install -y "https://github.com/icebluey/kernel/releases/download/v$(echo ${_kernel_ver} | cut -d- -f1)/kernel-tools-libs-devel-${_kernel_ver}.el7.x86_64.rpm"
 yum install -y "https://github.com/icebluey/kernel/releases/download/v$(echo ${_kernel_ver} | cut -d- -f1)/perf-${_kernel_ver}.el7.x86_64.rpm"
+if rpm -qa 2>/dev/null | grep -q -i '^kernel-[1-9]'; then
+    yum install -y "https://github.com/icebluey/kernel/releases/download/v$(echo ${_kernel_ver} | cut -d- -f1)/kernel-${_kernel_ver}.el7.x86_64.rpm"
+fi
 
 _install_openssl111
 _install_gcc
