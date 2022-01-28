@@ -97,9 +97,9 @@ yum update -y
 _kernel_ver='5.15.17-20220128'
 yum install -y "https://github.com/icebluey/kernel/releases/download/v$(echo ${_kernel_ver} | cut -d- -f1)/kernel-headers-${_kernel_ver}.el7.x86_64.rpm"
 yum install -y "https://github.com/icebluey/kernel/releases/download/v$(echo ${_kernel_ver} | cut -d- -f1)/kernel-devel-${_kernel_ver}.el7.x86_64.rpm"
-yum install -y "https://github.com/icebluey/kernel/releases/download/v$(echo ${_kernel_ver} | cut -d- -f1)/kernel-tools-libs-${_kernel_ver}.el7.x86_64.rpm"
-yum install -y "https://github.com/icebluey/kernel/releases/download/v$(echo ${_kernel_ver} | cut -d- -f1)/kernel-tools-${_kernel_ver}.el7.x86_64.rpm"
-yum install -y "https://github.com/icebluey/kernel/releases/download/v$(echo ${_kernel_ver} | cut -d- -f1)/kernel-tools-libs-devel-${_kernel_ver}.el7.x86_64.rpm"
+yum install -y "https://github.com/icebluey/kernel/releases/download/v$(echo ${_kernel_ver} | cut -d- -f1)/kernel-tools-libs-${_kernel_ver}.el7.x86_64.rpm" \
+               "https://github.com/icebluey/kernel/releases/download/v$(echo ${_kernel_ver} | cut -d- -f1)/kernel-tools-${_kernel_ver}.el7.x86_64.rpm" \
+               "https://github.com/icebluey/kernel/releases/download/v$(echo ${_kernel_ver} | cut -d- -f1)/kernel-tools-libs-devel-${_kernel_ver}.el7.x86_64.rpm"
 yum install -y "https://github.com/icebluey/kernel/releases/download/v$(echo ${_kernel_ver} | cut -d- -f1)/perf-${_kernel_ver}.el7.x86_64.rpm"
 if rpm -qa 2>/dev/null | grep -q -i '^kernel-[1-9]'; then
     yum install -y "https://github.com/icebluey/kernel/releases/download/v$(echo ${_kernel_ver} | cut -d- -f1)/kernel-${_kernel_ver}.el7.x86_64.rpm"
