@@ -88,11 +88,11 @@ yum install -y passwd shadow-utils authconfig libpwquality pam pam-devel audit
 _patch_dracut
 
 yum install -y lsof file sed gawk grep less patch passwd groff-base pkgconfig which crontabs cronie info pam
-yum install -y "https://raw.githubusercontent.com/icebluey/kernel-ml/master/kernel-headers.el7.x86_64.rpm"
+yum install -y "https://github.com/icebluey/kernel/releases/download/v5.15.17/kernel-headers-5.15.17-20220128.el7.x86_64.rpm"
 yum install -y perl perl-devel perl-libs perl-Env perl-ExtUtils-Embed \
   perl-ExtUtils-Install perl-ExtUtils-MakeMaker perl-ExtUtils-Manifest \
   perl-ExtUtils-ParseXS perl-Git perl-JSON perl-SGMLSpm perl-libwww-perl perl-podlators
-yum install -y "https://raw.githubusercontent.com/icebluey/kernel-ml/master/kernel-devel.el7.x86_64.rpm"
+yum install -y "https://github.com/icebluey/kernel/releases/download/v5.15.17/kernel-devel-5.15.17-20220128.el7.x86_64.rpm"
 yum update -y
 
 _install_openssl111
