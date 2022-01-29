@@ -41,7 +41,7 @@ _install_gcc() {
     yum install -y gcc cpp
     yum install -y gcc-c++ libstdc++-devel
     yum install -y redhat-rpm-config
-    yum install -y m4 glibc-devel glib2-devel libuuid-devel lksctp-tools-devel pam-devel
+    yum install -y m4 glibc-devel glib2-devel libuuid-devel lksctp-tools-devel pam-devel systemd-devel
     yum install -y elfutils-libelf-devel elfutils-libelf
     yum install -y gmp mpfr libmpc
     yum install -y gmp-devel mpfr-devel libmpc-devel
