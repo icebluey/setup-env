@@ -5,10 +5,23 @@ TZ='UTC'; export TZ
 /sbin/ldconfig
 set -e
 
-_install_openssl111() {
+_install_ssl_111() {
     set -e
     _tmp_dir="$(mktemp -d)"
     cd "${_tmp_dir}"
+    install -m 0755 -d openssl
+    cd openssl
+    _ssl_111_ver='1.1.1m'
+    wget -c -t 9 -T 9 "https://github.com/icebluey/openssl/releases/download/${_ssl_111_ver}/openssl1.1-${_ssl_111_ver}-1.el7.x86_64.rpm"
+    wget -c -t 9 -T 9 "https://github.com/icebluey/openssl/releases/download/${_ssl_111_ver}/openssl1.1-devel-${_ssl_111_ver}-1.el7.x86_64.rpm"
+    wget -c -t 9 -T 9 "https://github.com/icebluey/openssl/releases/download/${_ssl_111_ver}/openssl1.1-libs-${_ssl_111_ver}-1.el7.x86_64.rpm"
+    wget -c -t 9 -T 9 "https://github.com/icebluey/openssl/releases/download/${_ssl_111_ver}/openssl1.1-static-${_ssl_111_ver}-1.el7.x86_64.rpm"
+    wget -c -t 9 -T 9 "https://github.com/icebluey/openssl/releases/download/${_ssl_111_ver}/sha256sums.txt"
+    cd ..
+    wget -c -t 9 -T 9 "https://raw.githubusercontent.com/icebluey/openssl/master/.install-ssl.sh"
+    yum install -y zlib
+    bash .install-ssl.sh
+
     git clone "https://github.com/icebluey/kprerequisite.git"
     cd kprerequisite
     # For openssh
