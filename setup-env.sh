@@ -82,8 +82,8 @@ _patch_dracut() {
     set -e
     yum install -y patch dracut
     cd /usr/lib/dracut
-    wget -c -t 9 -T 9 "https://raw.githubusercontent.com/icebluey/kprerequisite/master/patches/01-dracut-98systemd-module-setup.patch"
-    patch --verbose -N -p1 -i 01-dracut-98systemd-module-setup.patch
+    wget -c -t 9 -T 9 "https://raw.githubusercontent.com/icebluey/kprerequisite/master/patches/dracut-98systemd-module-setup.patch"
+    patch --verbose -N -p1 -i dracut-98systemd-module-setup.patch
 }
 
 yum makecache
