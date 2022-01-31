@@ -21,11 +21,37 @@ _install_ssl_111() {
     wget -c -t 9 -T 9 "https://raw.githubusercontent.com/icebluey/openssl/master/.install-ssl.sh"
     yum install -y zlib glibc
     bash .install-ssl.sh
+    cd /tmp
+    rm -fr "${_tmp_dir}"
+    /sbin/ldconfig
+}
 
+_install_openssh() {
+    set -e
+    _tmp_dir="$(mktemp -d)"
+    cd "${_tmp_dir}"
+    install -m 0755 -d openssh
+    cd openssh
+    _ssh_ver='8.8p1-20220131'
+    wget -c -t 9 -T 9 "https://github.com/icebluey/openssh/releases/download/${_ssh_ver}/openssh-${_ssh_ver}.el7.x86_64.rpm"
+    wget -c -t 9 -T 9 "https://github.com/icebluey/openssh/releases/download/${_ssh_ver}/openssh-clients-${_ssh_ver}.el7.x86_64.rpm"
+    wget -c -t 9 -T 9 "https://github.com/icebluey/openssh/releases/download/${_ssh_ver}/openssh-server-${_ssh_ver}.el7.x86_64.rpm"
+    wget -c -t 9 -T 9 "https://github.com/icebluey/openssh/releases/download/${_ssh_ver}/sha256sums.txt"
+    cd ..
+    wget -c -t 9 -T 9 "https://raw.githubusercontent.com/icebluey/openssh/master/.install-ssh.sh"
+    yum install -y zlib initscripts fipscheck fipscheck-lib libedit tcp_wrappers-libs pam pam-devel
+    bash .install-ssh.sh
+    cd /tmp
+    rm -fr "${_tmp_dir}"
+    /sbin/ldconfig
+}
+
+_install_tarpackage() {
+    set -e
+    _tmp_dir="$(mktemp -d)"
+    cd "${_tmp_dir}"
     git clone "https://github.com/icebluey/kprerequisite.git"
     cd kprerequisite
-    # For openssh
-    yum install -y initscripts fipscheck fipscheck-lib libedit tcp_wrappers-libs
     # For iproute2
     yum install -y zlib pcre libselinux libmnl libnetfilter_conntrack libnfnetlink libdb libcap libattr iptables glibc elfutils-libelf
     # For wget built against openssl 1.1.1
@@ -124,6 +150,8 @@ if rpm -qa 2>/dev/null | grep -q -i '^kernel-[1-9]'; then
 fi
 
 _install_ssl_111
+_install_openssh
+_install_tarpackage
 _install_gcc
 
 yum erase -y uuid-devel
