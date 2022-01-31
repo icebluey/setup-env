@@ -30,10 +30,6 @@ _install_ssl_111() {
     yum install -y zlib pcre libselinux libmnl libnetfilter_conntrack libnfnetlink libdb libcap libattr iptables glibc elfutils-libelf
     # For wget built against openssl 1.1.1
     yum install -y c-ares pcre2 idn2 libidn2 libunistring libuuid glibc
-    cd rpms
-    bash reinstall-ssl.sh
-    bash reinstall-ssh.sh
-    cd ..
     yum install -y iproute iproute-devel
     if ! grep -q -i '^exclude.*iproute' /etc/yum.conf 2>/dev/null; then
         echo 'exclude=iproute* wget*' >> /etc/yum.conf
@@ -85,6 +81,13 @@ _patch_dracut() {
     wget -c -t 9 -T 9 "https://raw.githubusercontent.com/icebluey/kprerequisite/master/patches/dracut-98systemd-module-setup.patch"
     patch --verbose -N -p1 -i dracut-98systemd-module-setup.patch
 }
+_patch_redhat_rpm_config() {
+    set -e
+    yum install -y patch redhat-rpm-config
+    cd /usr/lib/rpm/redhat
+    wget -c -t 9 -T 9 "https://raw.githubusercontent.com/icebluey/kprerequisite/master/patches/redhat-rpm-config.patch"
+    patch --verbose -N -p1 -i redhat-rpm-config.patch
+}
 
 yum makecache
 yum install -y deltarpm
@@ -98,6 +101,7 @@ yum install -y coreutils binutils util-linux findutils diffutils
 [[ -f /usr/share/zoneinfo/UTC ]] && (rm -f /etc/localtime ; ln -svf ../usr/share/zoneinfo/UTC /etc/localtime)
 
 _patch_dracut
+_patch_redhat_rpm_config
 
 yum install -y passwd shadow-utils authconfig libpwquality pam pam-devel audit
 yum install -y lsof file sed gawk grep less patch passwd groff-base pkgconfig which crontabs cronie info pam
