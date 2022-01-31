@@ -123,7 +123,7 @@ if rpm -qa 2>/dev/null | grep -q -i '^kernel-[1-9]'; then
     yum install -y "https://github.com/icebluey/kernel/releases/download/v$(echo ${_kernel_ver} | cut -d- -f1)/kernel-${_kernel_ver}.el7.x86_64.rpm"
 fi
 
-_install_openssl111
+_install_ssl_111
 _install_gcc
 
 yum erase -y uuid-devel
