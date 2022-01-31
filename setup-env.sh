@@ -19,7 +19,7 @@ _install_ssl_111() {
     wget -c -t 9 -T 9 "https://github.com/icebluey/openssl/releases/download/${_ssl_111_ver}/sha256sums.txt"
     cd ..
     wget -c -t 9 -T 9 "https://raw.githubusercontent.com/icebluey/openssl/master/.install-ssl.sh"
-    yum install -y zlib glibc
+    yum install -y zlib glibc zlib-devel pcre-devel libselinux-devel libcom_err-devel
     bash .install-ssl.sh
     cd /tmp
     rm -fr "${_tmp_dir}"
@@ -39,7 +39,7 @@ _install_openssh() {
     wget -c -t 9 -T 9 "https://github.com/icebluey/openssh/releases/download/${_ssh_ver}/sha256sums.txt"
     cd ..
     wget -c -t 9 -T 9 "https://raw.githubusercontent.com/icebluey/openssh/master/.install-ssh.sh"
-    yum install -y zlib initscripts fipscheck fipscheck-lib libedit tcp_wrappers-libs pam pam-devel zlib-devel pcre-devel libselinux-devel libcom_err-devel
+    yum install -y zlib initscripts fipscheck fipscheck-lib libedit tcp_wrappers-libs pam pam-devel
     bash .install-ssh.sh
     cd /tmp
     rm -fr "${_tmp_dir}"
