@@ -127,7 +127,6 @@ yum install -y coreutils binutils util-linux findutils diffutils
 [[ -f /usr/share/zoneinfo/UTC ]] && (rm -f /etc/localtime ; ln -svf ../usr/share/zoneinfo/UTC /etc/localtime)
 
 _patch_dracut
-_patch_redhat_rpm_config
 
 yum install -y passwd shadow-utils authconfig libpwquality pam pam-devel audit
 yum install -y lsof file sed gawk grep less patch passwd groff-base pkgconfig which crontabs cronie info pam
@@ -153,6 +152,7 @@ _install_ssl_111
 _install_openssh
 _install_tarpackage
 _install_gcc
+_patch_redhat_rpm_config
 
 yum erase -y uuid-devel
 yum clean all >/dev/null 2>&1 || : 
