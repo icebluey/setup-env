@@ -21,6 +21,7 @@ _install_ssl_111() {
     cd ..
     wget -c -t 9 -T 9 "https://raw.githubusercontent.com/icebluey/openssl/master/.install-ssl.sh"
     yum install -y zlib glibc zlib-devel pcre-devel libselinux-devel libcom_err-devel
+    yum install -y keyutils-libs-devel krb5-devel libkadm5 libverto-devel
     bash .install-ssl.sh
     cd /tmp
     rm -fr "${_tmp_dir}"
