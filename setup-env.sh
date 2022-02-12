@@ -125,7 +125,7 @@ yum install -y tzdata yum-utils
 yum install -y bash && ln -svf bash /bin/sh
 yum install -y epel-release ; yum makecache
 yum upgrade -y epel-release ; yum makecache
-yum install -y wget ca-certificates git
+yum install -y wget ca-certificates git curl
 yum install -y tar xz gzip bzip2 lz4 zip unzip cpio
 yum install -y coreutils binutils util-linux findutils diffutils
 [[ -f /usr/share/zoneinfo/UTC ]] && (rm -f /etc/localtime ; ln -svf ../usr/share/zoneinfo/UTC /etc/localtime)
@@ -140,7 +140,7 @@ yum install -y perl perl-devel perl-libs perl-Env perl-ExtUtils-Embed \
   perl-ExtUtils-ParseXS perl-Git perl-JSON perl-SGMLSpm perl-libwww-perl perl-podlators
 yum update -y
 
-_kernel_ver='5.15.22-20220210'
+_kernel_ver='5.15.23-20220211'
 yum install -y "https://github.com/icebluey/kernel/releases/download/v$(echo ${_kernel_ver} | cut -d- -f1)/kernel-headers-${_kernel_ver}.el7.x86_64.rpm"
 yum install -y "https://github.com/icebluey/kernel/releases/download/v$(echo ${_kernel_ver} | cut -d- -f1)/kernel-devel-${_kernel_ver}.el7.x86_64.rpm"
 yum install -y "https://github.com/icebluey/kernel/releases/download/v$(echo ${_kernel_ver} | cut -d- -f1)/kernel-tools-libs-${_kernel_ver}.el7.x86_64.rpm" \
