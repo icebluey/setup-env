@@ -13,6 +13,7 @@ _setup_env() {
 
 yum install -y deltarpm
 yum install -y bash wget ca-certificates
+yum update -y deltarpm bash wget ca-certificates
 ln -svf bash /bin/sh
 
 _setup_env
