@@ -97,6 +97,9 @@ _install_gcc() {
     yum install -y binutils/binutils-[0-9]*.el7.x86_64.rpm
     yum install -y binutils/binutils-devel-[0-9]*.el7.x86_64.rpm
     cd ..
+    _gcc_ver='10.3.1-20220304'
+    wget -c -t 9 -T 9 "https://github.com/icebluey/gcc/releases/download/v${_gcc_ver}/gcc-${_gcc_ver}-1.el7.x86_64.tar.xz.sha256"
+    wget -c -t 9 -T 9 "https://github.com/icebluey/gcc/releases/download/v${_gcc_ver}/gcc-${_gcc_ver}-1.el7.x86_64.tar.xz"
     sha256sum -c gcc-10*el7.x86_64.tar.xz.sha256
     tar -xf gcc-10*.el7.x86_64.tar.xz -C /opt/
     /opt/gcc/.00install
