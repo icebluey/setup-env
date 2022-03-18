@@ -22,6 +22,7 @@ _install_ssl_111() {
     wget -c -t 9 -T 9 "https://github.com/icebluey/openssl/releases/download/${_ssl_111_ver}/sha256sums.txt"
     cd ..
     wget -c -t 9 -T 9 "https://raw.githubusercontent.com/icebluey/openssl/master/.install-ssl.sh"
+    yum install -y openssl-devel openssl-libs openssl
     yum install -y zlib glibc zlib-devel pcre-devel libselinux-devel libcom_err-devel
     yum install -y keyutils-libs-devel krb5-devel libkadm5 libverto-devel
     bash .install-ssl.sh
