@@ -137,10 +137,12 @@ _install_gpg2() {
     yum install -y readline-devel readline
     yum install -y bzip2-devel bzip2-libs bzip2
     yum install -y gnupg2 gpgme-devel gpgme libassuan-devel libassuan libgcrypt-devel libgcrypt libgpg-error-devel libgpg-error libksba-devel libksba pth-devel pth
-    tar -xf .pre/sqlite-3.38.1-1.el7.x86_64.tar.xz -C /
+    tar -xf .pre/libedit-*.tar.xz -C /
+    tar -xf .pre/sqlite-*.tar.xz -C /
     bash .del-old.so.sh ; bash .install_all.sh
     sleep 2
     /sbin/ldconfig >/dev/null 2>&1
+    echo 'exclude=libedit-devel.* libedit.* sqlite-devel.* sqlite.*' >> /etc/yum.conf
     echo 'exclude=gnupg2.* gpgme-devel.* gpgme.* libassuan-devel.* libassuan.* libgcrypt-devel.* libgcrypt.* libgpg-error-devel.* libgpg-error.* libksba-devel.* libksba.* pth-devel.* pth.*' >> /etc/yum.conf
     cd /tmp
     rm -fr "${_tmp_dir}"
