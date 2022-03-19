@@ -123,6 +123,27 @@ _patch_redhat_rpm_config() {
     patch --verbose -N -p1 -i redhat-rpm-config.patch
 }
 
+_install_gpg2() {
+    set -e
+    _tmp_dir="$(mktemp -d)"
+    cd "${_tmp_dir}"
+    git clone "https://github.com/icebluey/gpg2.git"
+    cd gpg2
+    yum install -y libedit-devel libedit
+    yum install -y sqlite-devel sqlite
+    yum install -y gtk2-devel gtk2
+    yum install -y ncurses-devel ncurses-libs ncurses
+    yum install -y openldap-devel openldap
+    yum install -y readline-devel readline
+    yum install -y bzip2-devel bzip2-libs bzip2
+    tar -xf .pre/sqlite-3.38.1-1.el7.x86_64.tar.xz -C /
+    bash .del-old.so.sh ; bash .install_all.sh
+    sleep 2
+    /sbin/ldconfig >/dev/null 2>&1
+    cd /tmp
+    rm -fr "${_tmp_dir}"
+}
+
 yum makecache
 yum install -y deltarpm
 yum install -y tzdata yum-utils
@@ -161,6 +182,7 @@ _install_openssh
 _install_tarpackage
 _install_gcc
 _patch_redhat_rpm_config
+_install_gpg2
 
 yum erase -y uuid-devel
 yum clean all >/dev/null 2>&1 || : 
