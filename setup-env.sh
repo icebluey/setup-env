@@ -162,7 +162,7 @@ yum install -y coreutils binutils util-linux findutils diffutils
 _patch_dracut
 
 yum install -y passwd shadow-utils authconfig libpwquality pam pam-devel audit
-yum install -y lsof file sed gawk grep less patch passwd groff-base pkgconfig which crontabs cronie info pam pciutils-libs
+yum install -y lsof file sed gawk grep less patch passwd groff-base pkgconfig which crontabs cronie info pam pciutils-libs man-db
 
 yum install -y perl perl-devel perl-libs perl-Env perl-ExtUtils-Embed \
   perl-ExtUtils-Install perl-ExtUtils-MakeMaker perl-ExtUtils-Manifest \
