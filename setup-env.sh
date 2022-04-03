@@ -37,7 +37,7 @@ _install_openssh() {
     cd "${_tmp_dir}"
     install -m 0755 -d openssh
     cd openssh
-    _ssh_ver='8.9p1-20220227'
+    _ssh_ver='8.9p1-20220325'
     wget -c -t 9 -T 9 "https://github.com/icebluey/openssh/releases/download/${_ssh_ver}/openssh-${_ssh_ver}.el7.x86_64.rpm"
     wget -c -t 9 -T 9 "https://github.com/icebluey/openssh/releases/download/${_ssh_ver}/openssh-clients-${_ssh_ver}.el7.x86_64.rpm"
     wget -c -t 9 -T 9 "https://github.com/icebluey/openssh/releases/download/${_ssh_ver}/openssh-server-${_ssh_ver}.el7.x86_64.rpm"
@@ -169,7 +169,7 @@ yum install -y perl perl-devel perl-libs perl-Env perl-ExtUtils-Embed \
   perl-ExtUtils-ParseXS perl-Git perl-JSON perl-SGMLSpm perl-libwww-perl perl-podlators
 yum update -y
 
-_kernel_ver='5.15.30-20220319'
+_kernel_ver='5.17.1-20220402'
 yum install -y "https://github.com/icebluey/kernel/releases/download/v$(echo ${_kernel_ver} | cut -d- -f1)/kernel-headers-${_kernel_ver}.el7.x86_64.rpm"
 yum install -y "https://github.com/icebluey/kernel/releases/download/v$(echo ${_kernel_ver} | cut -d- -f1)/kernel-devel-${_kernel_ver}.el7.x86_64.rpm"
 yum install -y "https://github.com/icebluey/kernel/releases/download/v$(echo ${_kernel_ver} | cut -d- -f1)/kernel-tools-libs-${_kernel_ver}.el7.x86_64.rpm" \
