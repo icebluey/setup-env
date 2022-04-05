@@ -157,7 +157,8 @@ yum install -y epel-release ; yum makecache
 yum upgrade -y epel-release ; yum makecache
 yum install -y wget ca-certificates git curl
 yum install -y tar xz gzip bzip2 lz4 zip unzip cpio
-yum install -y coreutils binutils util-linux findutils diffutils
+yum install -y coreutils binutils util-linux findutils diffutils \
+               socat ethtool iptables ebtables ipvsadm ipset psmisc bash-completion conntrack-tools iproute nfs-utils
 [[ -f /usr/share/zoneinfo/UTC ]] && (rm -f /etc/localtime ; ln -svf ../usr/share/zoneinfo/UTC /etc/localtime)
 
 _patch_dracut
