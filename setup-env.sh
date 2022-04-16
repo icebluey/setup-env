@@ -37,7 +37,7 @@ _install_openssh() {
     cd "${_tmp_dir}"
     install -m 0755 -d openssh
     cd openssh
-    _ssh_ver='8.9p1-20220325'
+    _ssh_ver='9.0p1-20220416'
     wget -c -t 9 -T 9 "https://github.com/icebluey/openssh/releases/download/${_ssh_ver}/openssh-${_ssh_ver}.el7.x86_64.rpm"
     wget -c -t 9 -T 9 "https://github.com/icebluey/openssh/releases/download/${_ssh_ver}/openssh-clients-${_ssh_ver}.el7.x86_64.rpm"
     wget -c -t 9 -T 9 "https://github.com/icebluey/openssh/releases/download/${_ssh_ver}/openssh-server-${_ssh_ver}.el7.x86_64.rpm"
