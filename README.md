@@ -1,5 +1,9 @@
 ```
 
+#echo "proxy=http://192.168.10.1:1081" >> /etc/yum.conf
+#export http_proxy="http://192.168.10.1:1081"
+#export https_proxy="http://192.168.10.1:1081"
+
 _setup_env() {
     set -e
     _tmp_dir="$(mktemp -d)"
