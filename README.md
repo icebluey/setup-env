@@ -1,5 +1,7 @@
 ```
 
+if ! grep -q '^alias ll=' ~/.bashrc; then echo "alias ll='/bin/ls --color -lah'" >> ~/.bashrc; . ~/.bashrc; fi
+
 #echo "proxy=http://192.168.10.1:1081" >> /etc/yum.conf
 #export http_proxy="http://192.168.10.1:1081"
 #export https_proxy="http://192.168.10.1:1081"
