@@ -87,6 +87,8 @@ _install_tarpackage2() {
     sha256sum -c sha256sums.txt
     rm -f openssl-1.1.1*
     ls -1 *.tar.xz | xargs --no-run-if-empty -I '{}' tar -xf '{}' -C /
+    echo 'exclude=lz4.* lz4-devel.* lz4-static.*' >> /etc/yum.conf
+    echo 'exclude=zstd.* libzstd.* libzstd-devel.* libzstd-static.*' >> /etc/yum.conf
     sleep 2
     cd /tmp
     rm -fr "${_tmp_dir}"
@@ -161,7 +163,8 @@ _install_gpg2() {
     bash .del-old.so.sh ; bash .install_all.sh
     sleep 2
     /sbin/ldconfig >/dev/null 2>&1
-    echo 'exclude=libedit-devel.* libedit.* sqlite-devel.* sqlite.*' >> /etc/yum.conf
+    echo 'exclude=libedit.* libedit-devel.*' >> /etc/yum.conf
+    echo 'exclude=sqlite.* sqlite-devel.*' >> /etc/yum.conf
     echo 'exclude=gnupg2.* gpgme-devel.* gpgme.* libassuan-devel.* libassuan.* libgcrypt-devel.* libgcrypt.* libgpg-error-devel.* libgpg-error.* libksba-devel.* libksba.* pth-devel.* pth.*' >> /etc/yum.conf
     cd /tmp
     rm -fr "${_tmp_dir}"
