@@ -75,8 +75,9 @@ _install_gcc() {
     set -e
     _tmp_dir="$(mktemp -d)"
     cd "${_tmp_dir}"
-    git clone https://github.com/icebluey/gcc.git
-    cd gcc
+    wget -c -t 9 -T 9 "https://github.com/icebluey/gnucc/releases/download/20220508/gnucc-11.3.0.tar.gz"
+    tar -xf gnucc-11.3.0.tar.gz
+    cd gnucc-*
     yum install -y libzstd zstd make pkgconfig groff-base bc ctags
     yum install -y gcc cpp
     yum install -y gcc-c++ libstdc++-devel
@@ -92,18 +93,13 @@ _install_gcc() {
     if ! grep -q -i '^exclude.*gcc' /etc/yum.conf 2>/dev/null; then
         echo 'exclude=gcc.* cpp.* gcc-c++.*' >> /etc/yum.conf
     fi
-    cd .pre-install
-    sha256sum -c sha256sums.txt
-    ls -1 *.tar.xz | xargs --no-run-if-empty -I '{}' tar -xf '{}' -C /
-    yum install -y binutils/binutils-[0-9]*.el7.x86_64.rpm
-    yum install -y binutils/binutils-devel-[0-9]*.el7.x86_64.rpm
-    cd ..
-    _gcc_ver='10.3.1-20220304'
-    wget -c -t 9 -T 9 "https://github.com/icebluey/gcc/releases/download/v${_gcc_ver}/gcc-${_gcc_ver}-1.el7.x86_64.tar.xz.sha256"
-    wget -c -t 9 -T 9 "https://github.com/icebluey/gcc/releases/download/v${_gcc_ver}/gcc-${_gcc_ver}-1.el7.x86_64.tar.xz"
-    sha256sum -c gcc-10*el7.x86_64.tar.xz.sha256
-    tar -xf gcc-10*.el7.x86_64.tar.xz -C /opt/
+    ls -1 pre/*.x86_64.tar.xz | xargs --no-run-if-empty -I '{}' tar -xf '{}' -C /
+    yum install -y pre/binutils/binutils-[0-9]*.el7.x86_64.rpm pre/binutils/binutils-devel-[0-9]*.el7.x86_64.rpm
+    cd gcc
+    sha256sum -c gcc-1*el7.x86_64.tar.xz.sha256
+    tar -xf gcc-1*.el7.x86_64.tar.xz -C /opt/
     /opt/gcc/.00install
+    cd /tmp
     rm -fr "${_tmp_dir}"
     /sbin/ldconfig
 }
