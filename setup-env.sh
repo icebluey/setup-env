@@ -26,6 +26,7 @@ _install_ssl_111() {
     yum install -y zlib glibc zlib-devel pcre-devel libselinux-devel libcom_err-devel
     yum install -y keyutils-libs-devel krb5-devel libkadm5 libverto-devel
     bash .install-ssl.sh
+    sleep 2
     cd /tmp
     rm -fr "${_tmp_dir}"
     /sbin/ldconfig
@@ -46,6 +47,7 @@ _install_openssh() {
     wget -c -t 9 -T 9 "https://raw.githubusercontent.com/icebluey/openssh/master/.install-ssh.sh"
     yum install -y zlib initscripts fipscheck fipscheck-lib libedit tcp_wrappers-libs pam pam-devel
     bash .install-ssh.sh
+    sleep 2
     cd /tmp
     rm -fr "${_tmp_dir}"
     /sbin/ldconfig
@@ -66,6 +68,26 @@ _install_tarpackage() {
         echo 'exclude=iproute* wget*' >> /etc/yum.conf
     fi
     ls -1 tars/*.tar.xz | xargs --no-run-if-empty -I '{}' tar -xf '{}' -C /
+    sleep 2
+    cd /tmp
+    rm -fr "${_tmp_dir}"
+    /sbin/ldconfig
+}
+
+_install_tarpackage2() {
+    set -e
+    _tmp_dir="$(mktemp -d)"
+    cd "${_tmp_dir}"
+    wget -c -t 9 -T 9 "https://github.com/icebluey/pre-build/releases/download/20220508/tarpackage.el7-20220508.tar.gz"
+    sleep 1
+    tar -xf tarpackage*.tar*
+    sleep 1
+    rm -f tarpackage*.tar*
+    cd tarpackage*
+    sha256sum -c sha256sums.txt
+    rm -f openssl-1.1.1*
+    ls -1 *.tar.xz | xargs --no-run-if-empty -I '{}' tar -xf '{}' -C /
+    sleep 2
     cd /tmp
     rm -fr "${_tmp_dir}"
     /sbin/ldconfig
@@ -99,6 +121,7 @@ _install_gcc() {
     sha256sum -c gcc-1*el7.x86_64.tar.xz.sha256
     tar -xf gcc-1*.el7.x86_64.tar.xz -C /opt/
     /opt/gcc/.00install
+    sleep 2
     cd /tmp
     rm -fr "${_tmp_dir}"
     /sbin/ldconfig
@@ -185,6 +208,7 @@ _install_tarpackage
 _install_gcc
 _patch_redhat_rpm_config
 _install_gpg2
+_install_tarpackage2
 
 yum erase -y uuid-devel
 yum clean all >/dev/null 2>&1 || : 
