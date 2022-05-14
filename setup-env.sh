@@ -189,6 +189,9 @@ yum install -y coreutils binutils util-linux findutils diffutils \
                socat ethtool iptables ebtables ipvsadm ipset psmisc bash-completion conntrack-tools iproute nfs-utils net-tools
 [[ -f /usr/share/zoneinfo/UTC ]] && (rm -f /etc/localtime ; ln -svf ../usr/share/zoneinfo/UTC /etc/localtime)
 
+yum install -y m4 libtool libtasn1-devel libffi-devel nss-softokn-freebl \
+  libunistring-devel p11-kit-devel libseccomp-devel libcap-devel postfix
+
 _patch_dracut
 
 yum install -y passwd shadow-utils authconfig libpwquality pam pam-devel audit
