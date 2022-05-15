@@ -131,6 +131,8 @@ _install_gcc() {
     yum install -y pre/binutils/binutils-[0-9]*.el7.x86_64.rpm pre/binutils/binutils-devel-[0-9]*.el7.x86_64.rpm
     cd gcc
     sha256sum -c gcc-1*el7.x86_64.tar.xz.sha256
+    rm -fr /opt/gcc
+    sleep 1
     tar -xf gcc-1*.el7.x86_64.tar.xz -C /opt/
     /opt/gcc/.00install
     sleep 2
