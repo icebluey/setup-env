@@ -91,7 +91,7 @@ _install_tarpackage2() {
     sleep 1
     rm -f tarpackage*.tar*
     cd tarpackage*
-    sha256sum -c sha256sums.txt
+    #sha256sum -c sha256sums.txt
     yum install -y chrony
     rm -f /etc/chrony.*
     rm -f openssl-1.1.1*
