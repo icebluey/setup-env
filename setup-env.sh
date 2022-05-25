@@ -84,7 +84,7 @@ _install_tarpackage2() {
     tar -xf cmake-*.tar* -C /
     sleep 1
     rm -f cmake-*.tar*
-    _tarpackage_date='20220515'
+    _tarpackage_date='20220525'
     wget -c -t 9 -T 9 "https://github.com/icebluey/pre-build/releases/download/${_tarpackage_date}/tarpackage.el7-${_tarpackage_date}.tar.gz"
     sleep 1
     tar -xf tarpackage*.tar*
