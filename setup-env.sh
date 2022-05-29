@@ -38,7 +38,7 @@ _install_openssh() {
     cd "${_tmp_dir}"
     install -m 0755 -d openssh
     cd openssh
-    _ssh_ver='9.0p1-20220416'
+    _ssh_ver='9.0p1-20220529'
     wget -c -t 9 -T 9 "https://github.com/icebluey/openssh/releases/download/${_ssh_ver}/openssh-${_ssh_ver}.el7.x86_64.rpm"
     wget -c -t 9 -T 9 "https://github.com/icebluey/openssh/releases/download/${_ssh_ver}/openssh-clients-${_ssh_ver}.el7.x86_64.rpm"
     wget -c -t 9 -T 9 "https://github.com/icebluey/openssh/releases/download/${_ssh_ver}/openssh-server-${_ssh_ver}.el7.x86_64.rpm"
@@ -96,6 +96,7 @@ _install_tarpackage2() {
     rm -f /etc/chrony.*
     rm -f openssl-1.1.1*
     ls -1 *.tar.xz | xargs --no-run-if-empty -I '{}' tar -xf '{}' -C /
+    echo 'exclude=zlib.* zlib-devel.* zlib-static.*' >> /etc/yum.conf
     echo 'exclude=lz4.* lz4-devel.* lz4-static.*' >> /etc/yum.conf
     echo 'exclude=zstd.* libzstd.* libzstd-devel.* libzstd-static.*' >> /etc/yum.conf
     echo 'exclude=chrony*' >> /etc/yum.conf
