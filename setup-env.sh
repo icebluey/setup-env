@@ -198,6 +198,8 @@ yum install -y coreutils binutils util-linux findutils diffutils \
 yum install -y m4 libtool libtasn1-devel libffi-devel nss-softokn-freebl \
   libunistring-devel p11-kit-devel libseccomp-devel libcap-devel postfix
 
+yum install -y vim-minimal vim-enhanced
+
 _patch_dracut
 
 yum install -y passwd shadow-utils authconfig libpwquality pam pam-devel audit
