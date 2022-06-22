@@ -14,7 +14,7 @@ _install_ssl_111() {
     cd "${_tmp_dir}"
     install -m 0755 -d openssl
     cd openssl
-    _ssl_111_ver='1.1.1o'
+    _ssl_111_ver='1.1.1p'
     wget -c -t 9 -T 9 "https://github.com/icebluey/openssl/releases/download/${_ssl_111_ver}/openssl1.1-${_ssl_111_ver}-1.el7.x86_64.rpm"
     wget -c -t 9 -T 9 "https://github.com/icebluey/openssl/releases/download/${_ssl_111_ver}/openssl1.1-devel-${_ssl_111_ver}-1.el7.x86_64.rpm"
     wget -c -t 9 -T 9 "https://github.com/icebluey/openssl/releases/download/${_ssl_111_ver}/openssl1.1-libs-${_ssl_111_ver}-1.el7.x86_64.rpm"
