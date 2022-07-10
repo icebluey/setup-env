@@ -46,7 +46,7 @@ _install_openssh() {
     cd ..
     wget -c -t 9 -T 9 "https://raw.githubusercontent.com/icebluey/openssh/master/.install-ssh.sh"
     yum install -y zlib initscripts fipscheck fipscheck-lib libedit tcp_wrappers-libs pam pam-devel
-    yum install -y xauth audit-libs-devel
+    yum install -y xauth audit-libs-devel rpm-build
     bash .install-ssh.sh
     sleep 2
     cd /tmp
