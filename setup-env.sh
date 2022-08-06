@@ -80,7 +80,7 @@ _install_tarpackage2() {
     set -e
     _tmp_dir="$(mktemp -d)"
     cd "${_tmp_dir}"
-    _cmake_ver='3.23.2'
+    _cmake_ver='3.24.0'
     wget -c -t 9 -T 9 "https://github.com/icebluey/pre-build/releases/download/v${_cmake_ver}/cmake-${_cmake_ver}-1.el7.x86_64.tar.xz"
     sleep 1
     tar -xf cmake-*.tar* -C /
