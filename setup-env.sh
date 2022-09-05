@@ -210,6 +210,10 @@ yum install -y lsof file sed gawk grep less patch passwd groff-base pkgconfig wh
 yum install -y perl perl-devel perl-libs perl-Env perl-ExtUtils-Embed \
   perl-ExtUtils-Install perl-ExtUtils-MakeMaker perl-ExtUtils-Manifest \
   perl-ExtUtils-ParseXS perl-Git perl-JSON perl-SGMLSpm perl-libwww-perl perl-podlators
+
+yum install -y glibc-devel glibc-headers libxml2-devel libxslt-devel \
+  gd-devel perl-devel perl bc net-snmp-libs net-snmp-agent-libs net-snmp-devel
+
 yum update -y
 
 _kernel_ver='5.19.5-20220829'
