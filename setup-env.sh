@@ -207,7 +207,7 @@ _patch_dracut
 yum install -y passwd shadow-utils authconfig libpwquality pam pam-devel audit
 yum install -y lsof file sed gawk grep less patch passwd groff-base pkgconfig which crontabs cronie info pam pciutils-libs man-db
 
-yum install -y perl perl-devel perl-libs perl-Env perl-ExtUtils-Embed \
+yum install -y perl perl-devel perl-libs perl-Env perl-ExtUtils-Embed perl-IPC-Cmd \
   perl-ExtUtils-Install perl-ExtUtils-MakeMaker perl-ExtUtils-Manifest \
   perl-ExtUtils-ParseXS perl-Git perl-JSON perl-SGMLSpm perl-libwww-perl perl-podlators
 
