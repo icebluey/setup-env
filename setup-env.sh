@@ -86,16 +86,16 @@ _install_tarpackage2() {
     tar -xf cmake-*.tar* -C /
     sleep 1
     rm -f cmake-*.tar*
-    _tarpackage_date='20220525'
+    _tarpackage_date='20221015'
     wget -c -t 9 -T 9 "https://github.com/icebluey/pre-build/releases/download/${_tarpackage_date}/tarpackage.el7-${_tarpackage_date}.tar.gz"
     sleep 1
     tar -xf tarpackage*.tar*
     sleep 1
     rm -f tarpackage*.tar*
     cd tarpackage*
-    #sha256sum -c sha256sums.txt
     yum install -y chrony
     rm -f /etc/chrony.*
+    rm -fr /usr/lib64/chrony
     rm -f openssl-1.1.1*
     ls -1 *.tar.xz | xargs --no-run-if-empty -I '{}' tar -xf '{}' -C /
     echo 'exclude=zlib.* zlib-devel.* zlib-static.*' >> /etc/yum.conf
