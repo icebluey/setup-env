@@ -187,6 +187,7 @@ _install_gpg2() {
 
 yum makecache
 yum install -y deltarpm
+yum update -y
 yum install -y tzdata yum-utils
 yum install -y bash && ln -svf bash /bin/sh
 yum install -y epel-release ; yum makecache
@@ -213,8 +214,6 @@ yum install -y perl perl-devel perl-libs perl-Env perl-ExtUtils-Embed perl-IPC-C
 
 yum install -y glibc-devel glibc-headers libxml2-devel libxslt-devel \
   gd-devel perl-devel perl bc net-snmp-libs net-snmp-agent-libs net-snmp-devel
-
-yum update -y
 
 _kernel_ver='5.19.12-20220929'
 yum install -y "https://github.com/icebluey/kernel/releases/download/v$(echo ${_kernel_ver} | cut -d- -f1)/kernel-headers-${_kernel_ver}.el7.x86_64.rpm"
