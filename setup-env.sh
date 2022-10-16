@@ -187,11 +187,11 @@ _install_gpg2() {
 
 yum makecache
 yum install -y deltarpm
-yum update -y
 yum install -y tzdata yum-utils
 yum install -y bash && ln -svf bash /bin/sh
 yum install -y epel-release ; yum makecache
 yum upgrade -y epel-release ; yum makecache
+yum update -y
 yum install -y wget ca-certificates git curl
 yum install -y tar xz gzip bzip2 lz4 zip unzip cpio
 yum install -y coreutils binutils util-linux findutils diffutils \
