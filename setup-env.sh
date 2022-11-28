@@ -62,7 +62,7 @@ _install_tarpackage() {
     git clone "https://github.com/icebluey/kprerequisite.git"
     cd kprerequisite
     # For iproute2
-    yum install -y zlib pcre libselinux libmnl libnetfilter_conntrack libnfnetlink libdb libcap libattr iptables glibc elfutils-libelf bison
+    yum install -y zlib pcre libselinux libmnl libnetfilter_conntrack libnfnetlink libdb libcap libattr iptables glibc elfutils-libelf bison flex
     # For wget built against openssl 1.1.1
     yum install -y c-ares pcre2 idn2 libidn2 libunistring libuuid glibc
     yum install -y iproute iproute-devel
