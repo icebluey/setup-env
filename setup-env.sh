@@ -83,13 +83,13 @@ _install_tarpackage2() {
     _cmake_ver='3.24.2'
     wget -c -t 9 -T 9 "https://github.com/icebluey/pre-build/releases/download/v${_cmake_ver}/cmake-${_cmake_ver}-1.el7.x86_64.tar.xz"
     sleep 1
-    tar -xf cmake-*.tar* -C /
+    tar -xof cmake-*.tar* -C /
     sleep 1
     rm -f cmake-*.tar*
-    _tarpackage_date='20221102'
+    _tarpackage_date='20221210'
     wget -c -t 9 -T 9 "https://github.com/icebluey/pre-build/releases/download/${_tarpackage_date}/tarpackage.el7-${_tarpackage_date}.tar.gz"
     sleep 1
-    tar -xf tarpackage*.tar*
+    tar -xof tarpackage*.tar*
     sleep 1
     rm -f tarpackage*.tar*
     cd tarpackage*
