@@ -64,7 +64,7 @@ _install_tarpackage() {
     # For iproute2
     yum install -y zlib pcre libselinux libmnl libnetfilter_conntrack libnfnetlink libdb libcap libattr iptables glibc elfutils-libelf iptables-devel bison flex
     # For wget built against openssl 1.1.1
-    yum install -y c-ares pcre2 idn2 libidn2 libunistring libuuid glibc
+    yum install -y c-ares pcre2 idn2 libidn2 libunistring libuuid glibc glibc-common
     yum install -y iproute iproute-devel
     if ! grep -q -i '^exclude.*iproute' /etc/yum.conf 2>/dev/null; then
         echo 'exclude=iproute* wget*' >> /etc/yum.conf
@@ -239,6 +239,7 @@ _install_gpg2
 _install_tarpackage2
 
 yum erase -y uuid-devel
+yum install -y libuuid-devel
 yum clean all >/dev/null 2>&1 || : 
 rm -fr /var/cache/yum
 rm -fr /var/cache/dnf
