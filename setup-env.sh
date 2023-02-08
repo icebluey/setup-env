@@ -242,7 +242,7 @@ yum erase -y uuid-devel
 yum install -y libuuid-devel
 
 rm -fr /tmp/jq
-wget -c "https://github.com/stedolan/jq/releases/download/jq-1.6/jq-linux64" -O /tmp/jq
+wget -q -c "https://github.com/stedolan/jq/releases/download/jq-1.6/jq-linux64" -O /tmp/jq
 chmod 0755 /tmp/jq
 strip /tmp/jq
 sleep 1
