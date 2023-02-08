@@ -240,6 +240,16 @@ _install_tarpackage2
 
 yum erase -y uuid-devel
 yum install -y libuuid-devel
+
+rm -fr /tmp/jq
+wget -c "https://github.com/stedolan/jq/releases/download/jq-1.6/jq-linux64" -O /tmp/jq
+chmod 0755 /tmp/jq
+strip /tmp/jq
+sleep 1
+install -m 0755 /tmp/jq /usr/bin/jq
+sleep 1
+rm -f /tmp/jq
+
 yum clean all >/dev/null 2>&1 || : 
 rm -fr /var/cache/yum
 rm -fr /var/cache/dnf
