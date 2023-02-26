@@ -97,6 +97,8 @@ _install_tarpackage2() {
     rm -f /etc/chrony.*
     rm -fr /usr/lib64/chrony
     rm -f openssl-1.1.1*
+    rm -f /lib64/libz.so.1.2.7
+    rm -f /usr/lib64/libz.so.1.2.7
     ls -1 *.tar.xz | xargs --no-run-if-empty -I '{}' tar -xf '{}' -C /
     echo 'exclude=zlib.* zlib-devel.* zlib-static.*' >> /etc/yum.conf
     echo 'exclude=lz4.* lz4-devel.* lz4-static.*' >> /etc/yum.conf
