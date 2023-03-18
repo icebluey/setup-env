@@ -217,7 +217,7 @@ yum install -y perl perl-devel perl-libs perl-Env perl-ExtUtils-Embed perl-IPC-C
 yum install -y glibc-devel glibc-headers libxml2-devel libxslt-devel \
   gd-devel perl-devel perl bc net-snmp-libs net-snmp-agent-libs net-snmp-devel
 
-_kernel_ver='5.15.96-20230226'
+_kernel_ver='5.15.103-20230318'
 yum install -y "https://github.com/icebluey/kernel/releases/download/v$(echo ${_kernel_ver} | cut -d- -f1)/kernel-headers-${_kernel_ver}.el7.x86_64.rpm"
 yum install -y "https://github.com/icebluey/kernel/releases/download/v$(echo ${_kernel_ver} | cut -d- -f1)/kernel-devel-${_kernel_ver}.el7.x86_64.rpm"
 yum install -y "https://github.com/icebluey/kernel/releases/download/v$(echo ${_kernel_ver} | cut -d- -f1)/kernel-tools-libs-${_kernel_ver}.el7.x86_64.rpm" \
