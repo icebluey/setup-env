@@ -17,7 +17,8 @@ _setup_env() {
     _tmp_dir="$(mktemp -d)"
     cd "${_tmp_dir}"
     wget -c -t 9 -T 9 "https://raw.githubusercontent.com/icebluey/setup-env/master/setup-env.sh"
-    bash setup-env.sh
+    /bin/bash setup-env.sh
+    sleep 1
     cd /tmp
     rm -fr "${_tmp_dir}"
     /sbin/ldconfig
@@ -29,5 +30,4 @@ yum update -y deltarpm bash wget ca-certificates
 ln -svf bash /bin/sh
 
 _setup_env
-
 
