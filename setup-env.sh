@@ -252,6 +252,46 @@ install -m 0755 /tmp/jq /usr/bin/jq
 sleep 1
 rm -f /tmp/jq
 
+_install_git() {
+    set -e
+    _tmp_dir="$(mktemp -d)"
+    cd "${_tmp_dir}"
+    _release_ver="$(wget -qO- "https://github.com/icebluey/build-git/releases/" | grep -i '<a href="/.*/tree/' | sed 's|"|\n|g' | grep '/tree/' | sed -e 's|.*/tree/||g' | grep -iv -E 'alpha|beta|rc' | sort -V | tail -n 1)"
+    _dl_path="$(wget -qO- "https://github.com/icebluey/build-git/releases/expanded_assets/${_release_ver}" | grep -i "<a href=.*/releases/download/${_release_ver}/" | sed 's|"|\n|g' | grep -i "/releases/download/${_release_ver}/"  | grep -iv -E 'alpha|beta|rc' | grep -i 'xz$' | sort -V | tail -n 1)"
+    wget -q -c -t 9 -T 9 "https://github.com${_dl_path}"
+    rm -fr /usr/libexec/git-core
+    rm -fr /usr/lib64/git/private
+    tar -xof *.tar* -C /
+    sleep 1
+    cd /tmp
+    rm -fr "${_tmp_dir}"
+    /sbin/ldconfig
+    _release_ver='' ; _dl_path=''
+}
+_install_git
+
+_install_curl() {
+    set -e
+    _tmp_dir="$(mktemp -d)"
+    cd "${_tmp_dir}"
+    _release_ver="$(wget -qO- "https://github.com/icebluey/build-curl/releases/" | grep -i '<a href="/.*/tree/' | sed 's|"|\n|g' | grep '/tree/' | sed -e 's|.*/tree/||g' | grep -iv -E 'alpha|beta|rc' | sort -V | tail -n 1)"
+    _dl_path="$(wget -qO- "https://github.com/icebluey/build-curl/releases/expanded_assets/${_release_ver}" | grep -i "<a href=.*/releases/download/${_release_ver}/" | sed 's|"|\n|g' | grep -i "/releases/download/${_release_ver}/"  | grep -iv -E 'alpha|beta|rc' | grep -i 'xz$' | sort -V | tail -n 1)"
+    wget -q -c -t 9 -T 9 "https://github.com${_dl_path}"
+    rm -fr /usr/lib64/curl/private
+    tar -xof *.tar* -C /
+    sleep 1
+    cd /tmp
+    rm -fr "${_tmp_dir}"
+    /sbin/ldconfig
+    _release_ver='' ; _dl_path=''
+}
+_install_curl
+
+######################################
+#
+#              Done
+#
+######################################
 yum clean all >/dev/null 2>&1 || : 
 rm -fr /var/cache/yum
 rm -fr /var/cache/dnf
