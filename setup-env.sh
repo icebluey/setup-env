@@ -69,7 +69,7 @@ _install_tarpackage() {
     if ! grep -q -i '^exclude.*iproute' /etc/yum.conf 2>/dev/null; then
         echo 'exclude=iproute* wget*' >> /etc/yum.conf
     fi
-    ls -1 tars/*.tar.xz | xargs --no-run-if-empty -I '{}' tar -xf '{}' -C /
+    ls -1 tars/*.tar.xz | xargs --no-run-if-empty -I '{}' tar -xof '{}' -C /
     sleep 2
     cd /tmp
     rm -fr "${_tmp_dir}"
@@ -257,7 +257,7 @@ _install_git() {
     _tmp_dir="$(mktemp -d)"
     cd "${_tmp_dir}"
     _release_ver="$(wget -qO- "https://github.com/icebluey/build-git/releases/" | grep -i '<a href="/.*/tree/' | sed 's|"|\n|g' | grep '/tree/' | sed -e 's|.*/tree/||g' | grep -iv -E 'alpha|beta|rc' | sort -V | tail -n 1)"
-    _dl_path="$(wget -qO- "https://github.com/icebluey/build-git/releases/expanded_assets/${_release_ver}" | grep -i "<a href=.*/releases/download/${_release_ver}/" | sed 's|"|\n|g' | grep -i "/releases/download/${_release_ver}/"  | grep -iv -E 'alpha|beta|rc' | grep -i 'xz$' | sort -V | tail -n 1)"
+    _dl_path="$(wget -qO- "https://github.com/icebluey/build-git/releases/expanded_assets/${_release_ver}" | grep -i "<a href=.*/releases/download/${_release_ver}/" | sed 's|"|\n|g' | grep -i "/releases/download/${_release_ver}/"  | grep -iv -E 'alpha|beta|rc' | grep -i 'el7.*xz$' | sort -V | tail -n 1)"
     wget -q -c -t 9 -T 9 "https://github.com${_dl_path}"
     rm -fr /usr/libexec/git-core
     rm -fr /usr/lib64/git/private
@@ -275,7 +275,7 @@ _install_curl() {
     _tmp_dir="$(mktemp -d)"
     cd "${_tmp_dir}"
     _release_ver="$(wget -qO- "https://github.com/icebluey/build-curl/releases/" | grep -i '<a href="/.*/tree/' | sed 's|"|\n|g' | grep '/tree/' | sed -e 's|.*/tree/||g' | grep -iv -E 'alpha|beta|rc' | sort -V | tail -n 1)"
-    _dl_path="$(wget -qO- "https://github.com/icebluey/build-curl/releases/expanded_assets/${_release_ver}" | grep -i "<a href=.*/releases/download/${_release_ver}/" | sed 's|"|\n|g' | grep -i "/releases/download/${_release_ver}/"  | grep -iv -E 'alpha|beta|rc' | grep -i 'xz$' | sort -V | tail -n 1)"
+    _dl_path="$(wget -qO- "https://github.com/icebluey/build-curl/releases/expanded_assets/${_release_ver}" | grep -i "<a href=.*/releases/download/${_release_ver}/" | sed 's|"|\n|g' | grep -i "/releases/download/${_release_ver}/"  | grep -iv -E 'alpha|beta|rc' | grep -i 'el7.*xz$' | sort -V | tail -n 1)"
     wget -q -c -t 9 -T 9 "https://github.com${_dl_path}"
     rm -fr /usr/lib64/curl/private
     tar -xof *.tar* -C /
@@ -286,6 +286,23 @@ _install_curl() {
     _release_ver='' ; _dl_path=''
 }
 _install_curl
+
+_install_wget() {
+    set -e
+    _tmp_dir="$(mktemp -d)"
+    cd "${_tmp_dir}"
+    _release_ver="$(wget -qO- "https://github.com/icebluey/build-wget/releases/" | grep -i '<a href="/.*/tree/' | sed 's|"|\n|g' | grep '/tree/' | sed -e 's|.*/tree/||g' | grep -iv -E 'alpha|beta|rc' | sort -V | tail -n 1)"
+    _dl_path="$(wget -qO- "https://github.com/icebluey/build-wget/releases/expanded_assets/${_release_ver}" | grep -i "<a href=.*/releases/download/${_release_ver}/" | sed 's|"|\n|g' | grep -i "/releases/download/${_release_ver}/"  | grep -iv -E 'alpha|beta|rc' | grep -i 'el7.*xz$' | sort -V | tail -n 1)"
+    wget -q -c -t 9 -T 9 "https://github.com${_dl_path}"
+    rm -fr /usr/lib64/wget/
+    tar -xof *.tar* -C /
+    sleep 1
+    cd /tmp
+    rm -fr "${_tmp_dir}"
+    /sbin/ldconfig
+    _release_ver='' ; _dl_path=''
+}
+_install_wget
 
 ######################################
 #
