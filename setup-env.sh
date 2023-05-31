@@ -138,8 +138,11 @@ _install_gcc() {
     sha256sum -c gcc-1*el7.x86_64.tar.xz.sha256
     rm -fr /opt/gcc
     sleep 1
-    tar -xf gcc-1*.el7.x86_64.tar.xz -C /opt/
+    tar -xof gcc-1*.el7.x86_64.tar.xz -C /opt/
     /opt/gcc/.00install
+    if [ -f /opt/gcc/lib/gcc/x86_64-redhat-linux/11/include-fixed/openssl/bn.h ]; then
+        /usr/bin/mv -f /opt/gcc/lib/gcc/x86_64-redhat-linux/11/include-fixed/openssl/bn.h /opt/gcc/lib/gcc/x86_64-redhat-linux/11/include-fixed/openssl/bn.h.orig
+    fi
     sleep 2
     cd /tmp
     rm -fr "${_tmp_dir}"
